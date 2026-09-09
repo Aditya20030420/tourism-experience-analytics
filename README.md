@@ -3,6 +3,8 @@
 Classification, prediction, and recommendation on a tourism dataset (9 linked
 tables, 52,930 visit transactions). Ships an end-to-end pipeline + Streamlit app.
 
+![Tourism Experience Analytics app](docs/app.png)
+
 ## Summary
 
 A tourism analytics tool that turns raw visit records into three decisions a travel
