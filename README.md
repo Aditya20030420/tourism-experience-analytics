@@ -1,5 +1,12 @@
 # Tourism Experience Analytics
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.53-FF4B4B?logo=streamlit&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-1.8-F7931E?logo=scikitlearn&logoColor=white)
+![XGBoost](https://img.shields.io/badge/XGBoost-3.2-337AB7)
+![Status](https://img.shields.io/badge/status-complete-brightgreen)
+
 Classification, prediction, and recommendation on a tourism dataset (9 linked
 tables, 52,930 visit transactions). Ships an end-to-end pipeline + Streamlit app.
 
