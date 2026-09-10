@@ -87,6 +87,28 @@ streamlit run app.py        # the app
 
 `data/` holds the raw Excel tables (download from the source Drive folder if missing).
 
+## Usage
+
+Once `streamlit run app.py` is running, open the printed URL (default
+`http://localhost:8602`) and use the four tabs:
+
+- **Predict a trip** — pick the traveller's origin (continent → region → country,
+  which cascade so only valid combinations show), the place they're visiting, and the
+  year/month, then click **Show prediction**. You get a star rating for expected
+  enjoyment, the most-likely travel style, and a probability chart across all styles.
+- **Suggest places** — choose how to recommend: *places like one they loved* (by
+  similar travellers or by place type), *for a specific traveller* (enter a traveller
+  ID to use their history), or *crowd favourites*. Set how many suggestions and read
+  the ranked table.
+- **Trends** — browse dashboards: who people travel with, where travellers come from,
+  highest-rated place types, and visits per year. Expand **More charts** for the full
+  EDA figures.
+- **How accurate** — see held-out model performance as stat cards; open **Technical
+  details** for the full per-model metrics tables and confusion matrix.
+
+Everything runs locally on the data in `data/master.parquet` and the saved models in
+`artifacts/` — no internet or API keys required.
+
 ## What each objective does
 
 **1. Regression — predict a user's attraction rating (1–5).**
