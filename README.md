@@ -116,19 +116,31 @@ Evaluation ([src/eval_recsys.py](src/eval_recsys.py)): rating **RMSE 1.02** (ite
 ranking **MAP@10 0.34**, **Precision@10 0.07**, **HitRate@10 0.62** — for ~62% of users
 a genuinely-visited attraction lands in the top-10 built from their history.
 
-## Layout
+## Project structure
 
 ```
-src/data_prep.py   build master dataframe
-src/eda.py         EDA figures
-src/models.py      train/compare + save best models, metrics.json
-src/recommend.py   recsys artifacts + inference helpers (imported by app)
-src/eval_recsys.py recommender RMSE + MAP/Precision@10 -> metrics.json
-app.py             Streamlit: Predict a trip / Suggest places / Trends / How accurate
-assets/            world map (Natural Earth) for the app background
-artifacts/         saved models, metrics, plots
-reports/figures/   EDA plots
+tourism-experience-analytics/
+├── app.py                     # Streamlit app: Predict a trip / Suggest places / Trends / How accurate
+├── src/
+│   ├── data_prep.py           # clean + merge the 9 raw tables -> data/master.parquet
+│   ├── eda.py                 # exploratory charts -> reports/figures/
+│   ├── models.py              # train + compare regression & classification, save best + metrics.json
+│   ├── recommend.py           # build recsys artifacts + inference helpers (imported by app)
+│   └── eval_recsys.py         # recommender RMSE + MAP/Precision@10 -> metrics.json
+├── data/                      # raw Excel tables (master.parquet is generated, git-ignored)
+│   └── Additional_Data_for_Attraction_Sites/Updated_Item.xlsx
+├── assets/                    # Natural Earth world map (geojson + projected SVG) for the app background
+├── artifacts/                 # generated: saved models, metrics.json, confusion matrix (git-ignored)
+├── reports/figures/           # generated: EDA plots (git-ignored)
+├── docs/                      # README media (demo.gif, app.png)
+├── requirements.txt           # pinned dependencies
+├── REPORT.md                  # stakeholder-facing findings & insights
+├── LICENSE                    # MIT
+└── README.md
 ```
+
+Generated folders (`artifacts/`, `reports/`, `data/*.parquet`) are git-ignored and
+rebuilt by the pipeline — see [Run it](#run-it).
 
 ## Notes / deliberate simplifications
 - Tree models consume raw category ids directly (no one-hot) — fewer moving parts,
