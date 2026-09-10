@@ -39,6 +39,27 @@ recommender** — and serves everything through a Streamlit app with four tabs:
 marketing to the predicted travel style, lift engagement with personalised
 recommendations, and read tourism hotspots and trends at a glance.
 
+## Features
+
+- **Three ML tasks in one app** — rating regression, visit-mode classification, and
+  attraction recommendation, each with a multi-model comparison and the best kept.
+- **Star-rated predictions** — enjoyment shown as a 1–5 star card plus a per-class
+  probability chart for the predicted travel style.
+- **Cascading, valid inputs** — traveller continent → region → country narrow each
+  other, so you can't pick an impossible origin.
+- **Hybrid recommender** — item-item collaborative filtering, TF-IDF content-based,
+  a per-user blend, and a popularity fallback for cold start.
+- **Interactive dashboards** — themed Altair charts (gradient bars, trend area) for
+  who travels, where from, top-rated place types, and volume over time.
+- **Plain-language accuracy tab** — held-out performance as stat cards with level
+  meters; technical tables tucked away for data teams.
+- **Leakage-safe modelling** — mean encodings computed on the train split only, so
+  reported metrics reflect genuinely unseen visits.
+- **Fast, reproducible** — small depth-capped models are lazy-loaded (~1 s cold
+  start), and pinned `requirements.txt` + a one-command pipeline reproduce everything.
+- **Polished UI** — animated world-map background, skeuomorphic controls, and
+  non-technical wording throughout.
+
 ## Run it
 
 ```bash
