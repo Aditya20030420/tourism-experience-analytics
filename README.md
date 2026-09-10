@@ -60,6 +60,19 @@ recommendations, and read tourism hotspots and trends at a glance.
 - **Polished UI** — animated world-map background, skeuomorphic controls, and
   non-technical wording throughout.
 
+## Tech stack
+
+| Area | Tools |
+|---|---|
+| Language | Python 3.11 |
+| Data wrangling | pandas, NumPy, openpyxl (Excel), PyArrow (Parquet) |
+| Machine learning | scikit-learn (regression, classification, TF-IDF, cosine similarity), XGBoost, SciPy (sparse matrices), joblib (model persistence) |
+| Visualization | Altair (in-app charts), Matplotlib + seaborn (EDA figures) |
+| Web app | Streamlit |
+| Assets | Natural Earth world map (GeoJSON → SVG) |
+
+All dependencies are pinned in [`requirements.txt`](requirements.txt).
+
 ## Run it
 
 ```bash
