@@ -200,6 +200,23 @@ hr { border-color: rgba(255,255,255,.08) !important; }
   border-top-color:rgba(255,255,255,.12);
   box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08); }
 .app-footer .ft-sub { color:#7d92a8; font-size:.74rem; margin-top:.3rem; }
+/* accuracy stat cards */
+.stat-grid { display:flex; gap:1rem; flex-wrap:wrap; margin:.3rem 0 1.1rem; }
+.stat-card { flex:1 1 210px; padding:1.1rem 1.25rem; border-radius:14px;
+  background:linear-gradient(180deg,#243350,#18243a); border:1px solid #0b1220;
+  border-top-color:rgba(255,255,255,.14);
+  box-shadow:0 4px 8px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.10); }
+.stat-card .lab { display:flex; align-items:center; gap:.4rem; color:#9fb3c8;
+  font-size:.82rem; font-weight:600; }
+.stat-card .val { font-size:2rem; font-weight:800; letter-spacing:-.03em; color:#eaf2ff;
+  margin:.15rem 0 .55rem; line-height:1; }
+.stat-card .val small { font-size:.82rem; font-weight:600; color:#9fb3c8; margin-left:.3rem;
+  letter-spacing:0; }
+.stat-card .meter { height:7px; border-radius:99px; background:rgba(255,255,255,.09);
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.55); overflow:hidden; }
+.stat-card .meter i { display:block; height:100%; border-radius:99px;
+  background:linear-gradient(90deg,#2ec76b,#7ee0a8); box-shadow:0 0 8px rgba(46,199,107,.4); }
+.stat-card .note { color:#bcd0e6; font-size:.8rem; line-height:1.4; margin-top:.6rem; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -538,29 +555,33 @@ if active == "Trends":
 # ------------------------------------------------------------------ Models
 if active == "How accurate":
     section("target", "How accurate is it?",
-            "Plain-language summary of how well the app's predictions hold up on visits it "
-            "hadn't seen before.")
+            "How well the app's predictions hold up on real trips it was never trained on — "
+            "in plain English.")
 
     metrics = load_metrics()  # tiny JSON, loaded only on this tab
     rmae = metrics["regression"]["models"][metrics["regression"]["best"]]["MAE"]
     acc = metrics["classification"]["models"][metrics["classification"]["best"]]["accuracy"]
     hit = metrics.get("recommendation", {}).get("HitRate@10")
 
-    a, b, c = st.columns(3)
-    a.metric("Enjoyment guess", f"± {rmae:.1f} stars",
-             help="On average the predicted rating is within this many stars of the real one.")
-    b.metric("Travel-style guess", f"{acc*100:.0f}% correct",
-             help="How often it names the right travel group out of 5 possibilities (random would be ~20%).")
-    if hit is not None:
-        c.metric("Good suggestions", f"{hit*100:.0f}% of travellers",
-                 help="Share of travellers for whom a place they truly visited appeared in the top 10 suggestions.")
+    def stat(label, value, unit, pct, note):
+        return (f'<div class="stat-card"><div class="lab">{label}</div>'
+                f'<div class="val">{value}<small>{unit}</small></div>'
+                f'<div class="meter"><i style="width:{pct:.0f}%"></i></div>'
+                f'<div class="note">{note}</div></div>')
 
-    st.markdown(
-        f"- **Enjoyment:** predictions land within about **{rmae:.1f} of a star** of the real rating.\n"
-        f"- **Travel style:** the app picks the correct group about **{acc*100:.0f}% of the time** — "
-        f"more than twice as good as guessing.\n"
-        + (f"- **Suggestions:** for roughly **{hit*100:.0f}% of travellers**, a place they really went to "
-           f"showed up in their top 10 suggested places.\n" if hit is not None else ""))
+    cards = [
+        stat("Rating accuracy", f"±{rmae:.1f}", "stars", (1 - rmae / 4) * 100,
+             f"Predicted enjoyment lands within about {rmae:.1f} of a star of the real rating."),
+        stat("Travel-style match", f"{acc*100:.0f}", "% correct", acc * 100,
+             f"Names the right travel group about {acc*100:.0f}% of the time — over 2&times; better "
+             "than a random guess (5 groups)."),
+    ]
+    if hit is not None:
+        cards.append(stat("Useful suggestions", f"{hit*100:.0f}", "% of travellers", hit * 100,
+                          f"For ~{hit*100:.0f}% of travellers, a place they truly visited appears "
+                          "in their top-10 suggestions."))
+    st.markdown(f'<div class="stat-grid">{"".join(cards)}</div>', unsafe_allow_html=True)
+    st.caption("Measured on held-out visits (a 20% test split the models never saw during training).")
 
     with st.expander("Technical details (for data teams)"):
         st.write("**Regression (predict rating)** — best:", metrics["regression"]["best"])
