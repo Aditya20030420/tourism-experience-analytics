@@ -193,13 +193,8 @@ hr { border-color: rgba(255,255,255,.08) !important; }
   background:linear-gradient(180deg, rgba(143,208,255,.05), transparent 60%); }
 .app-footer .ft-brand { display:inline-flex; align-items:center; gap:.5rem; font-weight:700;
   color:#eaf2ff; letter-spacing:-.01em; font-size:1rem; }
-.app-footer .ft-tags { margin:.6rem 0 .35rem; display:flex; gap:.5rem; justify-content:center;
-  flex-wrap:wrap; }
-.app-footer .ft-tags span { font-size:.74rem; color:#bcd0e6; padding:.2rem .7rem; border-radius:999px;
-  background:linear-gradient(180deg,#243350,#18243a); border:1px solid #0b1220;
-  border-top-color:rgba(255,255,255,.12);
-  box-shadow:0 1px 2px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08); }
-.app-footer .ft-sub { color:#7d92a8; font-size:.74rem; margin-top:.3rem; }
+.app-footer .ft-cap { color:#9fb3c8; font-size:.8rem; margin:.5rem 0 .35rem; }
+.app-footer .ft-sub { color:#7d92a8; font-size:.73rem; margin-top:.15rem; }
 /* accuracy stat cards */
 .stat-grid { display:flex; gap:1rem; flex-wrap:wrap; margin:.3rem 0 1.1rem; }
 .stat-card { flex:1 1 210px; padding:1.1rem 1.25rem; border-radius:14px;
@@ -617,7 +612,8 @@ if active == "How accurate":
 st.markdown(
     f'<div class="app-footer">'
     f'<div class="ft-brand">{icon("globe", 20)}Tourism Experience Analytics</div>'
-    f'<div class="ft-tags"><span>Predict enjoyment</span><span>Spot travel styles</span>'
-    f'<span>Suggest places to visit</span></div>'
-    f'<div class="ft-sub">Built from real visit data · powered by machine learning</div></div>',
+    f'<div class="ft-cap">Rating prediction &middot; Visit-mode classification &middot; '
+    f'Attraction recommendation</div>'
+    f'<div class="ft-sub">&copy; 2026 Aditya Ganjoo &middot; MIT License &middot; '
+    f'Built with Python, scikit-learn &amp; Streamlit</div></div>',
     unsafe_allow_html=True)
