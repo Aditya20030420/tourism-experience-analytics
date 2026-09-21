@@ -1,6 +1,14 @@
 __pycache__/
 *.pyc
-data/*.parquet
-artifacts/
 reports/
 .streamlit/
+
+# generated data + models: keep the small ones the deployed app needs, ignore the rest
+data/*.parquet
+!data/master.parquet
+artifacts/*
+!artifacts/reg_model.joblib
+!artifacts/clf_model.joblib
+!artifacts/recsys.joblib
+!artifacts/metrics.json
+!artifacts/confusion_matrix.png

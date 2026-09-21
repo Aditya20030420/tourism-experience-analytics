@@ -1,0 +1,78 @@
+{
+  "regression": {
+    "models": {
+      "LinearRegression": {
+        "R2": -0.0686,
+        "RMSE": 1.0032,
+        "MAE": 0.7341
+      },
+      "RandomForest": {
+        "R2": -0.0766,
+        "RMSE": 1.0069,
+        "MAE": 0.7327
+      },
+      "XGBoost": {
+        "R2": -0.0402,
+        "RMSE": 0.9898,
+        "MAE": 0.7188
+      }
+    },
+    "best": "XGBoost",
+    "features": [
+      "ContinentId",
+      "RegionId",
+      "CountryId",
+      "CityId",
+      "AttractionId",
+      "AttractionTypeId",
+      "AttractionCityId",
+      "VisitYear",
+      "VisitMonth",
+      "attr_avg_rating",
+      "user_avg_rating"
+    ]
+  },
+  "classification": {
+    "models": {
+      "LogisticRegression": {
+        "accuracy": 0.2708,
+        "f1_weighted": 0.2866,
+        "precision_weighted": 0.369,
+        "recall_weighted": 0.2708
+      },
+      "RandomForest": {
+        "accuracy": 0.4162,
+        "f1_weighted": 0.4284,
+        "precision_weighted": 0.4505,
+        "recall_weighted": 0.4162
+      },
+      "XGBoost": {
+        "accuracy": 0.4962,
+        "f1_weighted": 0.4489,
+        "precision_weighted": 0.4879,
+        "recall_weighted": 0.4962
+      }
+    },
+    "best": "XGBoost",
+    "features": [
+      "ContinentId",
+      "RegionId",
+      "CountryId",
+      "CityId",
+      "AttractionId",
+      "AttractionTypeId",
+      "AttractionCityId",
+      "VisitYear",
+      "VisitMonth",
+      "Rating",
+      "attr_avg_rating"
+    ]
+  },
+  "recommendation": {
+    "RMSE": 1.0215,
+    "MAP@10": 0.3413,
+    "Precision@10": 0.0689,
+    "HitRate@10": 0.6223,
+    "users_evaluated": 4458
+  }
+}
