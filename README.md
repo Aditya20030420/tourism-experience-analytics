@@ -111,6 +111,16 @@ Once `streamlit run app.py` is running, open the printed URL (default
 Everything runs locally on the data in `data/master.parquet` and the saved models in
 `artifacts/` — no internet or API keys required.
 
+## Screenshots
+
+From the live app at [tourism-experience-ai.streamlit.app](https://tourism-experience-ai.streamlit.app):
+
+| Predict a trip | Live prediction |
+|---|---|
+| ![Home](docs/deploy_home.png) | ![Prediction result](docs/deploy_predict.png) |
+| **Travel trends** | **Prediction accuracy** |
+| ![Trends](docs/deploy_trends.png) | ![How accurate](docs/deploy_accuracy.png) |
+
 ## What each objective does
 
 **1. Regression — predict a user's attraction rating (1–5).**
