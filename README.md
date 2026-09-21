@@ -7,6 +7,8 @@
 ![XGBoost](https://img.shields.io/badge/XGBoost-3.2-337AB7)
 ![Status](https://img.shields.io/badge/status-complete-brightgreen)
 
+**▶ Live demo: [tourism-experience-ai.streamlit.app](https://tourism-experience-ai.streamlit.app)**
+
 Classification, prediction, and recommendation on a tourism dataset (9 linked
 tables, 52,930 visit transactions). Ships an end-to-end pipeline + Streamlit app.
 
